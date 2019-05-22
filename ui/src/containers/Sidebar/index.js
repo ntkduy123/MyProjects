@@ -28,7 +28,6 @@ export class Sidebar extends Component {
     const {navCollapsed, width, navStyle} = this.props
 
     let drawerStyle = ''
-    console.log(navStyle)
     return (
       <Sider
         className={`gx-app-sidebar ${drawerStyle} gx-layout-sider-dark`}

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Menu} from 'antd'
-import {Link} from 'react-router-dom'
+import { Menu } from 'antd'
+import { Link } from 'react-router-dom'
 
 import CustomScrollbars from 'util/CustomScrollbars'
 import SidebarLogo from './SidebarLogo'
@@ -14,6 +14,8 @@ import {
   NAV_STYLE_NO_HEADER_MINI_SIDEBAR
 } from '../../constants/ThemeSetting'
 
+const SubMenu = Menu.SubMenu
+
 class SidebarContent extends Component {
 
   getNoHeaderClass = (navStyle) => {
@@ -21,13 +23,14 @@ class SidebarContent extends Component {
       return 'gx-no-header-notifications'
     }
     return ''
-  };
+  }
+
   getNavStyleSubMenuClass = (navStyle) => {
     if (navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR) {
       return 'gx-no-header-submenu-popup'
     }
     return ''
-  };
+  }
 
   render() {
     const {navStyle, pathname} = this.props
@@ -45,13 +48,25 @@ class SidebarContent extends Component {
             <Menu
               defaultOpenKeys={[defaultOpenKeys]}
               selectedKeys={[selectedKeys]}
-              theme={'lite'}
+              theme={'dark'}
               mode="inline">
 
-              <Menu.Item key="sample">
-                <Link to="/sample"><i className="icon icon-widgets"/>
-                  <span>Sample Page</span></Link>
-              </Menu.Item>
+              <SubMenu
+                key="dashboard" className={this.getNavStyleSubMenuClass(navStyle)}
+                title={<span> <i className="icon icon-feedback"/><span>Blog</span></span>}>
+
+                <Menu.Item key="blog/post-list">
+                  <Link to="/blog/post-list">
+                    Post List
+                  </Link>
+                </Menu.Item>
+
+                <Menu.Item key="blog/post-table">
+                  <Link to="/blog/post-table">
+                    Post Table
+                  </Link>
+                </Menu.Item>
+              </SubMenu>
 
             </Menu>
           </CustomScrollbars>

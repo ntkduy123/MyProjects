@@ -7,6 +7,7 @@ import Topbar from '../Topbar/index'
 import {footerText} from 'util/config'
 import App from 'routes/index'
 import {connect} from 'react-redux'
+import { TAB_SIZE } from '../../constants/ThemeSetting'
 
 const {Content, Footer} = Layout
 
@@ -16,7 +17,10 @@ export class MainApp extends Component {
     return ''
   };
   getNavStyles = () => {
-    return <Topbar/>
+    if (this.props.width < TAB_SIZE) {
+      return <Topbar/>
+    }
+    return null
   };
 
   getSidebar = () => {
@@ -31,7 +35,7 @@ export class MainApp extends Component {
         {this.getSidebar()}
         <Layout>
           {this.getNavStyles()}
-          <Content className={`gx-layout-content ${ this.getContainerClass()} `}>
+          <Content style={{ overflowX: 'hidden' }} className={`gx-layout-content ${ this.getContainerClass()} `}>
             <App match={match}/>
             <Footer>
               <div className="gx-layout-footer-content">
@@ -50,4 +54,3 @@ const mapStateToProps = ({settings}) => {
   return {width, navStyle}
 }
 export default connect(mapStateToProps)(MainApp)
-

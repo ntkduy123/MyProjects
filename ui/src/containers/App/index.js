@@ -32,7 +32,7 @@ class App extends Component {
     const {match, location, layoutType, navStyle} = this.props
 
     if (location.pathname === '/') {
-      return ( <Redirect to={'/sample'}/> )
+      return ( <Redirect to={'/blog/post-list'}/> )
     }
 
     this.setLayoutType(layoutType)

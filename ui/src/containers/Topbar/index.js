@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Layout, Popover} from 'antd'
-import {Link} from 'react-router-dom'
 
 import {toggleCollapsedSideNav} from '../../appRedux/actions/Setting'
 import SearchBox from 'components/SearchBox'
@@ -42,13 +41,6 @@ class Topbar extends Component {
                  }}
               />
             </div> : null}
-          <Link to="/" className="gx-d-block gx-d-lg-none gx-pointer">
-            <img alt="" src={require('assets/images/w-logo.png')}/></Link>
-
-          <SearchBox styleName="gx-d-none gx-d-lg-block gx-lt-icon-search-bar-lg"
-                     placeholder="Search in app..."
-                     onChange={this.updateSearchChatUser.bind(this)}
-                     value={this.state.searchText}/>
           <ul className="gx-header-notifications gx-ml-auto">
             <li className="gx-notify gx-notify-search gx-d-inline-block gx-d-lg-none">
               <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" content={
