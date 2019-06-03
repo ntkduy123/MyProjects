@@ -8,9 +8,11 @@ import com.projects.demo.modules.blog.exception.ResourceNotFoundException;
 import com.projects.demo.modules.blog.repository.PostCategoryRepository;
 import com.projects.demo.modules.blog.repository.PostRepository;
 import com.projects.demo.modules.blog.repository.PostStatusRepository;
+import org.hibernate.query.criteria.internal.CriteriaBuilderImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Service
 public class PostService {
@@ -42,6 +44,14 @@ public class PostService {
 
     public Iterable<Post> findAll() {
         return postRepository.findAll();
+    }
+
+    public Iterable<Post> findByCategory(Long categoryId) {
+        try {
+            return postRepository.findByPostCategory_Id(categoryId);
+        } catch (Exception e) {
+            throw new ResourceNotFoundException(String.format("Post Category ID %s does not exist", categoryId));
+        }
     }
 
     public Post findById(Long id) {
