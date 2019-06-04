@@ -1,8 +1,8 @@
 import React from 'react'
-import potrait from 'assets/images/potrait.jpg'
+import { Link } from 'react-router-dom' 
 
 const PostCard = ({data}) => {
-  const {title, postCategory, description, image} = data
+  const { title, postCategory, description, image, id } = data
   return (
     <div className="gx-news-item">
       <div className="gx-news-thumb"><img className="gx-width-175 gx-rounded-lg" src={image} alt="..."/></div>
@@ -21,9 +21,9 @@ const PostCard = ({data}) => {
             </p>
           </div>
           <div className="gx-news-tags-right">
-            <p className="gx-text-primary gx-pointer gx-mb-0">Ready Full Story
+            <Link to={`/blog/post-detail/${id}`} className="gx-text-primary gx-pointer gx-mb-0">Ready Full Story
               <i className={'icon icon-long-arrow-right gx-fs-xl gx-ml-2 gx-d-inline-flex gx-vertical-align-middle'}/>
-            </p>
+            </Link>
           </div>
         </div>
       </div>

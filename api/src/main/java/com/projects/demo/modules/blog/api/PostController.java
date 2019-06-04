@@ -7,6 +7,7 @@ import com.projects.demo.modules.blog.service.MapValidationErrorService;
 import com.projects.demo.modules.blog.service.PostCategoryService;
 import com.projects.demo.modules.blog.service.PostService;
 import com.projects.demo.modules.blog.specification.AndSpecification;
+import com.projects.demo.modules.blog.specification.HasAuthor;
 import com.projects.demo.modules.blog.specification.HasCategoryId;
 import com.projects.demo.modules.blog.specification.Specification;
 import org.springframework.http.HttpStatus;
@@ -38,21 +39,27 @@ public class PostController {
     @Resource
     private BaseRepository baseRepository;
 
-//    @GetMapping("")
-//    public Iterable<Post> findPost() {
-//        return postService.findAll();
-//    }
-
     @GetMapping("")
-    public Iterable<Post> findByCategory(@RequestParam("categoryId") Long categoryId) {
+    public Iterable<Post> findPost(
+            @RequestParam(value = "categoryId", required = false) Long categoryId,
+            @RequestParam(value = "author", required = false) String author
+    ) {
         List<Specification<Post>> specs = new ArrayList<>();
 
         if (categoryId != null) {
             specs.add(new HasCategoryId(categoryId));
         }
 
-        Specification<Post> specification = new AndSpecification<>(specs);
-        return baseRepository.findAllBySpecification(specification);
+        if (author != null) {
+            specs.add(new HasAuthor(author));
+        }
+
+        if (specs.size() > 0) {
+            Specification<Post> specification = new AndSpecification<>(specs);
+            return baseRepository.findAllBySpecification(specification);
+        }
+
+        return postService.findAll();
     }
 
     @GetMapping("/{id}")
