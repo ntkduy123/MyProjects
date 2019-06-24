@@ -2,6 +2,11 @@ export const callApi = async (url, method, params, type) => {
   const fetchRequest = createFetchRequest(url, method, params, type)
 
   const request = await fetchRequest
+
+  if (!request.ok && request.status >= 400) {
+    throw Error(request.statusText)
+  }
+
   const response = await request.json()
   return response
 }
@@ -20,7 +25,7 @@ const createFetchRequest = (url, method, params, type) => {
     headers: {
       'Content-Type': 'application/json',
       // eslint-disable-next-line no-undef
-      'authorization': localStorage.getItem('api_key')
+      'Authorization': localStorage.getItem('Authorization')
     },
     body
   })

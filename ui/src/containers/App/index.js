@@ -5,7 +5,24 @@ import {Redirect, Route, Switch} from 'react-router-dom'
 
 import SignIn from '../SignIn'
 import MainApp from './MainApp'
+import {setInitUrl} from 'appRedux/actions/Auth'
 import {onNavStyleChange} from 'appRedux/actions/Setting'
+
+import { isLogin } from 'util/user'
+
+const RestrictedRoute = ({component: Component, ...rest}) =>
+  <Route
+    {...rest}
+    render={props =>
+      isLogin()
+        ? <Component {...props} />
+        : <Redirect
+          to={{
+            pathname: '/signin',
+            state: {from: props.location}
+          }}
+        />}
+  />
 
 class App extends Component {
 
@@ -29,10 +46,21 @@ class App extends Component {
   }
 
   render() {
-    const {match, location, layoutType, navStyle} = this.props
+    const { match, location, layoutType, navStyle } = this.props
 
     if (location.pathname === '/') {
-      return ( <Redirect to={'/blog/post-list'}/> )
+      if (!isLogin()) {
+        return ( <Redirect to={'/signin'}/> )
+      } else {
+        return ( <Redirect to={'/blog/post-list'}/> )
+      }
+    }
+
+    if (location.pathname === '/signin') {
+      console.log(isLogin())
+      if (isLogin()) {
+        return ( <Redirect to={'/blog/post-list'}/>)
+      }
     }
 
     this.setLayoutType(layoutType)
@@ -41,14 +69,16 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path='/signin' component={SignIn}/>
-        <Route path={`${match.url}`} component={MainApp}/>
+        <RestrictedRoute path={`${match.url}`} component={MainApp}/>
       </Switch>
     )
   }
 }
 
-const mapStateToProps = ({settings}) => {
+const mapStateToProps = ({settings, auth}) => {
   const {navStyle, layoutType} = settings
-  return {navStyle, layoutType}
+  const {authUser, initURL} = auth
+  return {navStyle, layoutType, authUser, initURL}
 }
-export default connect(mapStateToProps, { onNavStyleChange})(App)
+
+export default connect(mapStateToProps, { setInitUrl, onNavStyleChange })(App)

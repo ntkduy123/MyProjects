@@ -68,6 +68,13 @@ class SidebarContent extends Component {
                 </Menu.Item>
               </SubMenu>
 
+              <Menu.Item key="tiny-url">
+                <Link to="/tiny-url">
+                  <i className="icon icon-link"/>
+                  Tiny URL
+                </Link>
+              </Menu.Item>
+
             </Menu>
           </CustomScrollbars>
         </div>
