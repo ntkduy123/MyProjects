@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const SearchBox = ({
   styleName, placeholder, onChange, value
@@ -16,7 +17,15 @@ const SearchBox = ({
     </div>
   </div>
 )
+
 export default SearchBox
+
+SearchBox.propTypes = {
+  styleName: PropTypes.string,
+  value: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+}
 
 SearchBox.defaultProps = {
   styleName: '',

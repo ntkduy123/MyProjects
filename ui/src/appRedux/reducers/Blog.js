@@ -19,7 +19,6 @@ const INIT_STATE = {
 
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
-
     case GET_POST_LIST:
       return {
         ...state,

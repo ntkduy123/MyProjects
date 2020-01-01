@@ -1,7 +1,7 @@
 package com.projects.demo.modules.tinyurl.service;
 
 import com.projects.demo.modules.blog.exception.ResourceNotFoundException;
-import com.projects.demo.modules.tinyurl.entity.URL;
+import com.projects.demo.modules.domain.URL;
 import com.projects.demo.modules.tinyurl.repository.URLRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

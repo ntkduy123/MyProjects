@@ -1,6 +1,6 @@
 package com.projects.demo.modules.auth.config;
 
-import com.projects.demo.modules.auth.domain.User;
+import com.projects.demo.modules.domain.User;
 import com.projects.demo.modules.auth.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

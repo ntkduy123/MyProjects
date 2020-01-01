@@ -14,7 +14,7 @@ const AppNotification = () => (
       <ul className="gx-sub-popover">
         {notifications.map((notification, index) => (
           <NotificationItem
-            key={index}
+            key={notification}
             notification={notification}
           />
         ))

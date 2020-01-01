@@ -1,7 +1,7 @@
 package com.projects.demo.modules.auth.api;
 
 import com.projects.demo.modules.auth.config.JwtTokenProvider;
-import com.projects.demo.modules.auth.domain.User;
+import com.projects.demo.modules.domain.User;
 import com.projects.demo.modules.auth.dto.LoginRequest;
 import com.projects.demo.modules.auth.service.UserService;
 import com.projects.demo.modules.auth.util.UserValidator;

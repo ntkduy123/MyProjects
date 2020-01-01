@@ -20,7 +20,10 @@ const CardBox = ({
 export default CardBox
 
 CardBox.propTypes = {
-  children: PropTypes.node.isRequired
+  heading: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  styleName: PropTypes.string,
+  childrenStyle: PropTypes.string
 }
 
 CardBox.defaultProps = {

@@ -14,89 +14,63 @@ import {
   RESET_PASSWORD_SUCCESS
 } from 'constants/ActionTypes'
 
-export const userSignIn = (user) => {
-  return {
-    type: SIGNIN_USER,
-    payload: user
-  }
-}
+export const userSignIn = user => ({
+  type: SIGNIN_USER,
+  payload: user
+})
 
-export const userSignOut = () => {
-  return {
-    type: SIGNOUT_USER
-  }
-}
+export const userSignOut = () => ({
+  type: SIGNOUT_USER
+})
 
-export const userSignInSuccess = (authUser) => {
-  return {
-    type: SIGNIN_USER_SUCCESS,
-    payload: authUser
-  }
-}
+export const userSignInSuccess = authUser => ({
+  type: SIGNIN_USER_SUCCESS,
+  payload: authUser
+})
 
-export const userSignOutSuccess = () => {
-  return {
-    type: SIGNOUT_USER_SUCCESS,
-  }
-}
+export const userSignOutSuccess = () => ({
+  type: SIGNOUT_USER_SUCCESS,
+})
 
-export const showAuthMessage = (message) => {
-  return {
-    type: SHOW_MESSAGE,
-    payload: message
-  }
-}
+export const showAuthMessage = message => ({
+  type: SHOW_MESSAGE,
+  payload: message
+})
 
 
-export const userGoogleSignIn = (payload) => {
-  return {
-    type: SIGNIN_GOOGLE_USER,
-    payload
-  }
-}
+export const userGoogleSignIn = payload => ({
+  type: SIGNIN_GOOGLE_USER,
+  payload
+})
 
-export const userGoogleSignInSuccess = (authUser) => {
-  return {
-    type: SIGNIN_GOOGLE_USER_SUCCESS,
-    payload: authUser
-  }
-}
+export const userGoogleSignInSuccess = authUser => ({
+  type: SIGNIN_GOOGLE_USER_SUCCESS,
+  payload: authUser
+})
 
-export const setInitUrl = (url) => {
-  return {
-    type: INIT_URL,
-    payload: url
-  }
-}
+export const setInitUrl = url => ({
+  type: INIT_URL,
+  payload: url
+})
 
-export const showAuthLoader = () => {
-  return {
-    type: ON_SHOW_LOADER,
-  }
-}
+export const showAuthLoader = () => ({
+  type: ON_SHOW_LOADER,
+})
 
-export const hideMessage = () => {
-  return {
-    type: HIDE_MESSAGE,
-  }
-}
+export const hideMessage = () => ({
+  type: HIDE_MESSAGE,
+})
 
-export const hideAuthLoader = () => {
-  return {
-    type: ON_HIDE_LOADER,
-  }
-}
+export const hideAuthLoader = () => ({
+  type: ON_HIDE_LOADER,
+})
 
-export const resetPassword = (payload) => {
-  return {
-    type: RESET_PASSWORD,
-    payload
-  }
-}
+export const resetPassword = payload => ({
+  type: RESET_PASSWORD,
+  payload
+})
 
-export const resetPasswordSuccess = (resetedPassword) => {
-  return {
-    type: RESET_PASSWORD_SUCCESS,
-    resetedPassword
-  }
-}
+export const resetPasswordSuccess = resetedPassword => ({
+  type: RESET_PASSWORD_SUCCESS,
+  resetedPassword
+})

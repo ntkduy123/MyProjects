@@ -1,6 +1,6 @@
 package com.projects.demo.modules.auth.repository;
 
-import com.projects.demo.modules.auth.domain.User;
+import com.projects.demo.modules.domain.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

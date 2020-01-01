@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
+import {
+  all, call, fork, put, takeEvery
+} from 'redux-saga/effects'
 import {
   SIGNIN_USER,
   SIGNOUT_USER
@@ -8,17 +10,17 @@ import {
   showAuthMessage,
   userSignInSuccess,
   userSignOutSuccess
-} from '../../appRedux/actions/Auth'
+} from '../actions/Auth'
 import { callApi } from '../../util/api'
 
-const signInUserWithEmailPasswordRequest = (payload) => callApi(
+const signInUserWithEmailPasswordRequest = payload => callApi(
   '/api/users/login',
   'POST',
   payload
 )
 
 
-function* signInUserWithEmailPassword({payload}) {
+function* signInUserWithEmailPassword({ payload }) {
   try {
     const response = yield call(signInUserWithEmailPasswordRequest, payload)
     if (response.message) {

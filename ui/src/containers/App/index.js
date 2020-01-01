@@ -1,30 +1,43 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import URLSearchParams from 'url-search-params'
-import {Redirect, Route, Switch} from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
-import SignIn from '../SignIn'
-import MainApp from './MainApp'
-import {setInitUrl} from 'appRedux/actions/Auth'
-import {onNavStyleChange} from 'appRedux/actions/Setting'
+import { setInitUrl } from 'appRedux/actions/Auth'
+import { onNavStyleChange } from 'appRedux/actions/Setting'
+import PropTypes from 'prop-types'
 
 import { isLogin } from 'util/user'
+import { MainApp } from './MainApp'
+import SignIn from '../SignIn'
 
-const RestrictedRoute = ({component: Component, ...rest}) =>
+const RestrictedRoute = ({ component: Element, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      isLogin()
-        ? <Component {...props} />
-        : <Redirect
+    render={props => (isLogin()
+      ? <Element {...props} />
+      : (
+        <Redirect
           to={{
             pathname: '/signin',
-            state: {from: props.location}
+            state: { from: props.location }
           }}
-        />}
+        />
+      ))}
   />
+)
 
 class App extends Component {
+  componentDidMount() {
+    const { location } = this.props
+    const { search } = location
+    const params = new URLSearchParams(search)
+
+    if (params.has('nav-style')) {
+      const { onNavStyleChange } = this.props
+      onNavStyleChange(params.get('nav-style'))
+    }
+  }
 
   setLayoutType = () => {
     document.body.classList.remove('boxed-layout')
@@ -37,48 +50,53 @@ class App extends Component {
     document.body.classList.add('horizontal-layout')
   };
 
-  componentWillMount() {
-    const params = new URLSearchParams(this.props.location.search)
-
-    if (params.has('nav-style')) {
-      this.props.onNavStyleChange(params.get('nav-style'))
-    }
-  }
-
   render() {
-    const { match, location, layoutType, navStyle } = this.props
+    const {
+      match, location
+    } = this.props
 
     if (location.pathname === '/') {
       if (!isLogin()) {
-        return ( <Redirect to={'/signin'}/> )
+        return ( <Redirect to="/signin" /> )
       } else {
-        return ( <Redirect to={'/blog/post-list'}/> )
+        return ( <Redirect to="/blog/post-list" /> )
       }
     }
 
     if (location.pathname === '/signin') {
-      console.log(isLogin())
       if (isLogin()) {
-        return ( <Redirect to={'/blog/post-list'}/>)
+        return ( <Redirect to="/blog/post-list" />)
       }
     }
 
-    this.setLayoutType(layoutType)
+    this.setLayoutType()
 
-    this.setNavStyle(navStyle)
+    this.setNavStyle()
     return (
       <Switch>
-        <Route exact path='/signin' component={SignIn}/>
-        <RestrictedRoute path={`${match.url}`} component={MainApp}/>
+        <Route exact path="/signin" component={SignIn} />
+        <RestrictedRoute path={`${match.url}`} component={MainApp} />
       </Switch>
     )
   }
 }
 
-const mapStateToProps = ({settings, auth}) => {
-  const {navStyle, layoutType} = settings
-  const {authUser, initURL} = auth
-  return {navStyle, layoutType, authUser, initURL}
+const mapStateToProps = ({ auth }) => {
+  const { authUser, initURL } = auth
+  return {
+    authUser, initURL
+  }
+}
+
+RestrictedRoute.propTypes = {
+  component: PropTypes.shape().isRequired,
+  location: PropTypes.shape().isRequired,
+}
+
+App.propTypes = {
+  match: PropTypes.shape().isRequired,
+  location: PropTypes.shape().isRequired,
+  onNavStyleChange: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, { setInitUrl, onNavStyleChange })(App)

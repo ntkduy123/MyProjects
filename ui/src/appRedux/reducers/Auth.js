@@ -18,62 +18,62 @@ const INIT_STATE = {
 
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
-  case INIT_URL: {
-    return {
-      ...state,
-      initURL: action.payload
+    case INIT_URL: {
+      return {
+        ...state,
+        initURL: action.payload
+      }
     }
-  }
 
-  case SIGNIN_USER_SUCCESS: {
-    return {
-      ...state,
-      loader: false,
-      loggedIn: true
+    case SIGNIN_USER_SUCCESS: {
+      return {
+        ...state,
+        loader: false,
+        loggedIn: true
+      }
     }
-  }
 
-  case SIGNOUT_USER_SUCCESS: {
-    return {
-      ...state,
-      loggedIn: false,
-      loader: false
+    case SIGNOUT_USER_SUCCESS: {
+      return {
+        ...state,
+        loggedIn: false,
+        loader: false
+      }
     }
-  }
 
-  case SHOW_MESSAGE: {
-    return {
-      ...state,
-      alertMessage: action.payload,
-      showMessage: true,
-      loader: false
+    case SHOW_MESSAGE: {
+      return {
+        ...state,
+        alertMessage: action.payload,
+        showMessage: true,
+        loader: false
+      }
     }
-  }
 
-  case HIDE_MESSAGE: {
-    return {
-      ...state,
-      alertMessage: '',
-      showMessage: false,
-      loader: false
+    case HIDE_MESSAGE: {
+      return {
+        ...state,
+        alertMessage: '',
+        showMessage: false,
+        loader: false
+      }
     }
-  }
 
-  case ON_SHOW_LOADER: {
-    return {
-      ...state,
-      loader: true
+    case ON_SHOW_LOADER: {
+      return {
+        ...state,
+        loader: true
+      }
     }
-  }
 
-  case ON_HIDE_LOADER: {
-    return {
-      ...state,
-      loader: false
+    case ON_HIDE_LOADER: {
+      return {
+        ...state,
+        loader: false
+      }
     }
-  }
 
-  default:
-    return state
+    default:
+      return state
   }
 }

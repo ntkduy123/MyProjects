@@ -1,6 +1,6 @@
 package com.projects.demo.modules.auth.config;
 
-import com.projects.demo.modules.auth.domain.User;
+import com.projects.demo.modules.domain.User;
 import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -37,6 +37,7 @@ public class JwtTokenProvider {
     }
 
     public boolean validateToken(String token) {
+        System.out.println(token);
         try {
             Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
             return true;

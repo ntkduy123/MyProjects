@@ -1,4 +1,4 @@
-package com.projects.demo.modules.blog.entity;
+package com.projects.demo.modules.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

@@ -1,12 +1,13 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Menu } from 'antd'
 import { Link } from 'react-router-dom'
 
 import CustomScrollbars from 'util/CustomScrollbars'
+import Auxiliary from 'util/Auxiliary'
+import Proptypes from 'prop-types'
 import SidebarLogo from './SidebarLogo'
 
-import Auxiliary from 'util/Auxiliary'
 import UserProfile from './UserProfile'
 import AppsNavigation from './AppsNavigation'
 import {
@@ -17,7 +18,6 @@ import {
 const SubMenu = Menu.SubMenu
 
 class SidebarContent extends Component {
-
   getNoHeaderClass = (navStyle) => {
     if (navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR || navStyle === NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR) {
       return 'gx-no-header-notifications'
@@ -33,45 +33,50 @@ class SidebarContent extends Component {
   }
 
   render() {
-    const {navStyle, pathname} = this.props
+    const { navStyle, pathname } = this.props
     const selectedKeys = pathname.substr(1)
     const defaultOpenKeys = selectedKeys.split('/')[1]
-    return (<Auxiliary>
+    return (
+      <Auxiliary>
 
-        <SidebarLogo/>
+        <SidebarLogo />
         <div className="gx-sidebar-content">
           <div className={`gx-sidebar-notifications ${this.getNoHeaderClass(navStyle)}`}>
-            <UserProfile/>
-            <AppsNavigation/>
+            <UserProfile />
+            <AppsNavigation />
           </div>
           <CustomScrollbars className="gx-layout-sider-scrollbar">
             <Menu
               defaultOpenKeys={[defaultOpenKeys]}
               selectedKeys={[selectedKeys]}
-              theme={'dark'}
-              mode="inline">
+              theme="dark"
+              mode="inline"
+            >
 
               <SubMenu
-                key="dashboard" className={this.getNavStyleSubMenuClass(navStyle)}
-                title={<span> <i className="icon icon-feedback"/><span>Blog</span></span>}>
+                key="dashboard"
+                className={this.getNavStyleSubMenuClass(navStyle)}
+                title={(
+                  <span>
+                    {' '}
+                    <i className="icon icon-feedback" />
+                    <span>Blog</span>
+                  </span>
+                  )}
+              >
 
                 <Menu.Item key="blog/post-list">
-                  <Link to="/blog/post-list">
-                    Post List
-                  </Link>
+                  <Link to="/blog/post-list"> Post List</Link>
                 </Menu.Item>
-
                 <Menu.Item key="blog/post-table">
-                  <Link to="/blog/post-table">
-                    Post Table
-                  </Link>
+                  <Link to="/blog/post-table"> Post Table</Link>
                 </Menu.Item>
               </SubMenu>
-
               <Menu.Item key="tiny-url">
                 <Link to="/tiny-url">
-                  <i className="icon icon-link"/>
-                  Tiny URL
+                  <i className="icon icon-link" />
+                  {' '}
+                  {'Tiny URL'}
                 </Link>
               </Menu.Item>
 
@@ -83,10 +88,14 @@ class SidebarContent extends Component {
   }
 }
 
-SidebarContent.propTypes = {}
-const mapStateToProps = ({settings}) => {
-  const {navStyle, pathname} = settings
-  return {navStyle, pathname}
+SidebarContent.propTypes = {
+  navStyle: Proptypes.string.isRequired,
+  pathname: Proptypes.string.isRequired
 }
-export default connect(mapStateToProps)(SidebarContent)
 
+const mapStateToProps = ({ settings }) => {
+  const { navStyle, pathname } = settings
+  return { navStyle, pathname }
+}
+
+export default connect(mapStateToProps)(SidebarContent)

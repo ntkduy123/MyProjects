@@ -1,9 +1,8 @@
 package com.projects.demo.modules.tinyurl.api;
 
 import com.projects.demo.modules.blog.dto.ResponseMessage;
-import com.projects.demo.modules.blog.entity.Post;
 import com.projects.demo.modules.blog.service.MapValidationErrorService;
-import com.projects.demo.modules.tinyurl.entity.URL;
+import com.projects.demo.modules.domain.URL;
 import com.projects.demo.modules.tinyurl.service.URLService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,11 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.math.BigInteger;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.ByteBuffer;
-import java.util.Base64;
 
 @Controller
 @ResponseBody

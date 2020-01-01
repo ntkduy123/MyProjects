@@ -1,6 +1,6 @@
 package com.projects.demo.modules.blog.repository;
 
-import com.projects.demo.modules.blog.entity.PostStatus;
+import com.projects.demo.modules.domain.PostStatus;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

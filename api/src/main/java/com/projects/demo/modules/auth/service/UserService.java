@@ -1,6 +1,6 @@
 package com.projects.demo.modules.auth.service;
 
-import com.projects.demo.modules.auth.domain.User;
+import com.projects.demo.modules.domain.User;
 import com.projects.demo.modules.auth.exception.UsernameAlreadyExistsException;
 import com.projects.demo.modules.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

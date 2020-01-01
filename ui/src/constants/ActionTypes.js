@@ -2,13 +2,13 @@
 export const TOGGLE_COLLAPSED_NAV = 'TOGGLE_COLLAPSE_MENU'
 export const WINDOW_WIDTH = 'WINDOW-WIDTH'
 
-//Contact Module const
+// Contact Module const
 export const SHOW_MESSAGE = 'SHOW_MESSAGE'
 export const HIDE_MESSAGE = 'HIDE_MESSAGE'
 export const ON_SHOW_LOADER = 'ON_SHOW_LOADER'
 export const ON_HIDE_LOADER = 'ON_HIDE_LOADER'
 
-//Auth const
+// Auth const
 export const SIGNIN_GOOGLE_USER = 'SIGNIN_GOOGLE_USER'
 export const SIGNIN_GOOGLE_USER_SUCCESS = 'SIGNIN_GOOGLE_USER_SUCCESS'
 export const SIGNIN_USER = 'SIGNIN_USER'
@@ -19,7 +19,7 @@ export const INIT_URL = 'INIT_URL'
 export const RESET_PASSWORD = 'RESET_PASSWORD'
 export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS'
 
-//Blog const
+// Blog const
 export const GET_POST_LIST = 'GET_POST_LIST'
 export const GET_POST_LIST_SUCCESS = 'GET_POST_LIST_SUCCESS'
 export const GET_POST = 'GET_POST'
@@ -29,13 +29,12 @@ export const GET_POST_CATEGORY_LIST_SUCCESS = 'GET_POST_CATEGORY_LIST_SUCCESS'
 export const SAVE_OR_UPDATE_POST = 'SAVE_OR_UPDATE_POST'
 export const SAVE_OR_UPDATE_POST_SUCCESS = 'SAVE_OR_UPDATE_POST_SUCCESS'
 
-//AWS const
+// AWS const
 export const GET_S3_FILE_LIST = 'GET_S3_FILE'
 export const GET_S3_FILE_LIST_SUCCESS = 'GET_S3_FILE_LIST_SUCCESS'
 export const DELETE_S3_FILE = 'DELETE_S3_FILE'
 export const DELETE_S3_FILE_SUCCESS = 'DELETE_S3_FILE_SUCCESS'
 
-//TinyURL const
+// TinyURL const
 export const GET_TINY_URL = 'GET_TINY_URL'
 export const GET_TINY_URL_SUCCESS = 'GET_TINY_URL_SUCCESS'
-

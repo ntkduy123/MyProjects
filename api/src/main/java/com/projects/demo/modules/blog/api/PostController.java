@@ -1,7 +1,7 @@
 package com.projects.demo.modules.blog.api;
 
-import com.projects.demo.modules.blog.entity.Post;
-import com.projects.demo.modules.blog.entity.PostCategory;
+import com.projects.demo.modules.domain.Post;
+import com.projects.demo.modules.domain.PostCategory;
 import com.projects.demo.modules.blog.repository.BaseRepository;
 import com.projects.demo.modules.blog.service.MapValidationErrorService;
 import com.projects.demo.modules.blog.service.PostCategoryService;
@@ -20,7 +20,6 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @ResponseBody

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getPostList } from '../../../appRedux/actions/Blog'
 import { Card, Table } from 'antd'
+import PropTypes from 'prop-types'
 
 const columns = [
   {
@@ -24,7 +23,7 @@ const columns = [
     title: 'Category',
     dataIndex: 'postCategory',
     key: 'category',
-    render: (category) => (
+    render: category => (
       <span>{category.name}</span>
     )
   },
@@ -32,7 +31,7 @@ const columns = [
     title: 'Status',
     dataIndex: 'postStatus',
     key: 'status',
-    render: (status) => (
+    render: status => (
       <span>{status.name}</span>
     )
   },
@@ -40,7 +39,7 @@ const columns = [
     title: 'Action',
     key: 'action',
     dataIndex: 'id',
-    render: (id) => (
+    render: id => (
       <Link to={`/blog/post-form/${id}`}>Edit</Link>
     ),
   }
@@ -48,22 +47,23 @@ const columns = [
 
 class PostTable extends Component {
   componentDidMount = () => {
-    this.props.getPostList()
+    const { getPostList } = this.props
+    getPostList()
   }
 
   render() {
     const { postList } = this.props
     return (
       <Card title="Post Table">
-        <Table className="gx-table-responsive" columns={columns} dataSource={postList}/>
+        <Table className="gx-table-responsive" columns={columns} dataSource={postList} />
       </Card>
     )
   }
 }
 
-const mapStateToProps = ({ blog }) => {
-  const { postList, loading } = blog
-  return { postList, loading }
+PostTable.propTypes = {
+  getPostList: PropTypes.func.isRequired,
+  postList: PropTypes.arrayOf().isRequired
 }
 
-export default connect(mapStateToProps, { getPostList })(PostTable)
+export default PostTable

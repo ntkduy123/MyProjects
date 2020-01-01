@@ -8,13 +8,16 @@ const INIT_STATE = {
 
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
-
     case SHOW_MESSAGE: {
-      return {...state, error: '', message: action.payload, showMessage: true}
+      return {
+        ...state, error: '', message: action.payload, showMessage: true
+      }
     }
 
     case HIDE_MESSAGE: {
-      return {...state, showMessage: false, error: '', message: ''}
+      return {
+        ...state, showMessage: false, error: '', message: ''
+      }
     }
 
     default:

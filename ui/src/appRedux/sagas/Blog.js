@@ -1,5 +1,9 @@
-import { takeEvery, call, all, fork, put } from 'redux-saga/effects'
-import { GET_POST_LIST, GET_POST, GET_POST_CATEGORY_LIST, SAVE_OR_UPDATE_POST } from '../../constants/ActionTypes'
+import {
+  takeEvery, call, all, fork, put
+} from 'redux-saga/effects'
+import {
+  GET_POST_LIST, GET_POST, GET_POST_CATEGORY_LIST, SAVE_OR_UPDATE_POST
+} from '../../constants/ActionTypes'
 import {
   getPostListSuccess,
   getPostSuccess,
@@ -10,7 +14,7 @@ import { showMessage } from '../actions/Common'
 
 import { callApi } from '../../util/api'
 
-const fetchPostListRequest = (payload) => callApi(
+const fetchPostListRequest = payload => callApi(
   '/api/post',
   'GET',
   payload
@@ -25,7 +29,7 @@ export function* fetchPostListWatcher() {
   yield takeEvery(GET_POST_LIST, fetchPostList)
 }
 
-const fetchPostRequest = (id) => callApi(
+const fetchPostRequest = id => callApi(
   `/api/post/${id}`,
   'GET'
 )
@@ -39,7 +43,7 @@ export function* fetchPostWatcher() {
   yield takeEvery(GET_POST, fetchPost)
 }
 
-const fetchPostCategoryListRequest = (payload) => callApi(
+const fetchPostCategoryListRequest = payload => callApi(
   '/api/post/category',
   'GET',
   payload
@@ -54,7 +58,7 @@ export function* fetchPostCategoryListWatcher() {
   yield takeEvery(GET_POST_CATEGORY_LIST, fetchPostCategoryList)
 }
 
-const saveOrUpdatePostRequest = (payload) => callApi(
+const saveOrUpdatePostRequest = payload => callApi(
   '/api/post',
   'POST',
   payload

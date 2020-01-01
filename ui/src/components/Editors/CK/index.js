@@ -1,26 +1,23 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CKEditor from 'react-ckeditor-component'
 
-class CK extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      content: ''
-    }
-  }
 
-  render() {
-    const { onChange, content } = this.props
-    return (
-      <CKEditor
-        activeClass="p10"
-        content={content}
-        events={{
-          'change': onChange
-        }}
-      />
-    )
-  }
+const CK = ({ onChange, content }) => {
+  (
+    <CKEditor
+      activeClass="p10"
+      content={content}
+      events={{
+        'change': onChange
+      }}
+    />
+  )
+}
+
+CK.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  content: PropTypes.shape().isRequired
 }
 
 export default CK

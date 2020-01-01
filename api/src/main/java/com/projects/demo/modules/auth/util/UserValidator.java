@@ -1,6 +1,6 @@
 package com.projects.demo.modules.auth.util;
 
-import com.projects.demo.modules.auth.domain.User;
+import com.projects.demo.modules.domain.User;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

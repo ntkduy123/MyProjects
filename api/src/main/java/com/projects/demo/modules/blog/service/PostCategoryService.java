@@ -1,6 +1,6 @@
 package com.projects.demo.modules.blog.service;
 
-import com.projects.demo.modules.blog.entity.PostCategory;
+import com.projects.demo.modules.domain.PostCategory;
 import com.projects.demo.modules.blog.repository.PostCategoryRepository;
 import org.springframework.stereotype.Service;
 

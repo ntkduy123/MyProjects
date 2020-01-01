@@ -1,5 +1,4 @@
 export const isLogin = () => {
-
   // eslint-disable-next-line no-undef
   const token = localStorage.getItem('Authorization')
   if (token) {
@@ -9,7 +8,6 @@ export const isLogin = () => {
       const userData = JSON.parse(window.atob(token.split('.')[1]))
 
       if (userData) {
-        console.log(Date.now() / 1000, userData.exp)
         const now = Math.floor(Date.now() / 1000)
         return now < userData.exp
       }
@@ -18,3 +16,6 @@ export const isLogin = () => {
 
   return false
 }
+
+export // eslint-disable-next-line no-undef
+const getToken = () => localStorage.getItem('Authorization')

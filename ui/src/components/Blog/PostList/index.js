@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
-import { Radio, Card, Spin, Row, Col } from 'antd'
-import { connect } from 'react-redux'
-import { getPostList, getPostCategoryList } from 'appRedux/actions/Blog'
-import PostCard from 'routes/Blog/Component/PostCard'
+import {
+  Radio, Card, Spin, Row, Col
+} from 'antd'
+import PostCard from 'components/Blog/PostList/PostListItem'
+import PropTypes from 'prop-types'
 
 class PostList extends Component {
   componentDidMount = () => {
-    this.props.getPostList()
-    this.props.getPostCategoryList()
+    const { getPostList, getPostCategoryList } = this.props
+    getPostList()
+    getPostCategoryList()
   }
 
   render() {
-    const { loading, postList, postCategoryList, getPostList } = this.props
+    const {
+      loading, postList, postCategoryList, getPostList
+    } = this.props
 
     return (
       <div className="gx-main-content gx-pb-sm-4">
@@ -22,15 +26,19 @@ class PostList extends Component {
                 <div className="ant-row-flex gx-justify-content-between gx-mb-3 gx-dash-search">
                   <h2 className="h4 gx-mb-3 gx-mb-sm-1 gx-mr-2">Blog posts</h2>
                   <div className="gx-mx-sm-2">
-                    <Radio.Group className="gx-radio-group-link gx-radio-group-link-news" defaultValue={0}
-                                onChange={this.handleChange}>
+                    <Radio.Group
+                      className="gx-radio-group-link gx-radio-group-link-news"
+                      defaultValue={0}
+                      onChange={this.handleChange}
+                    >
                       <Radio.Button
                         value={0}
                         className="gx-mb-1"
                         onClick={() => {
                           getPostList()
                         }}
-                      >All
+                      >
+                        {'All'}
                       </Radio.Button>
                       {
                         postCategoryList.map(category => (
@@ -50,12 +58,13 @@ class PostList extends Component {
                       }
                     </Radio.Group>
                   </div>
-                  <span className="gx-ml-2 gx-search-icon"><i
-                    className="icon icon-search-new gx-text-primary gx-fs-xxl gx-pointer"/></span>
+                  <span className="gx-ml-2 gx-search-icon">
+                    <i className="icon icon-search-new gx-text-primary gx-fs-xxl gx-pointer" />
+                  </span>
                 </div>
 
                 {
-                  postList.map((data, index) => <PostCard key={index} data={data}/>)
+                  postList.map((data, index) => <PostCard key={data} data={data} />)
                 }
               </Spin>
             </Card>
@@ -66,9 +75,12 @@ class PostList extends Component {
   }
 }
 
-const mapStateToProps = ({ blog }) => {
-  const { postList, loading, postCategoryList } = blog
-  return { postList, loading, postCategoryList }
+PostList.propTypes = {
+  getPostList: PropTypes.func.isRequired,
+  getPostCategoryList: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  postList: PropTypes.arrayOf().isRequired,
+  postCategoryList: PropTypes.arrayOf().isRequired
 }
 
-export default connect(mapStateToProps, { getPostList, getPostCategoryList })(PostList)
+export default PostList

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import asyncComponent from 'util/asyncComponent'
 
@@ -11,5 +12,9 @@ const App = ({ match }) => (
     </Switch>
   </div>
 )
+
+App.propTypes = {
+  match: PropTypes.shape().isRequired
+}
 
 export default App

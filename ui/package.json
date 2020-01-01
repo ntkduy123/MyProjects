@@ -9,7 +9,6 @@
     "antd-theme-webpack-plugin": "^1.1.6",
     "axios": "^0.18.0",
     "draftjs-to-html": "^0.8.4",
-    "eslint-config-airbnb": "^17.1.0",
     "firebase": "^5.2.0",
     "instantsearch.css": "^7.1.0",
     "less": "2.7.3",
@@ -27,7 +26,7 @@
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.1",
     "react-dom": "^16.4.1",
-    "react-draft-wysiwyg": "^1.12.13",
+    "react-draft-wysiwyg": "^1.13.2",
     "react-flip-move": "^3.0.2",
     "react-google-maps": "^9.4.5",
     "react-hot-loader": "^4.6.3",
@@ -55,12 +54,14 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "lint": "eslint ./src",
     "test": "react-app-rewired --env=jsdom"
   },
   "devDependencies": {
     "add": "^2.0.6",
     "babel-plugin-import": "^1.8.0",
     "customize-cra": "^0.2.10",
+    "eslint-config-airbnb": "17.1.0",
     "react-app-rewired": "^2.0.2",
     "yarn": "^1.7.0"
   },

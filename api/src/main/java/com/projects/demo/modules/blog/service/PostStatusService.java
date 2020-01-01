@@ -1,6 +1,6 @@
 package com.projects.demo.modules.blog.service;
 
-import com.projects.demo.modules.blog.entity.PostStatus;
+import com.projects.demo.modules.domain.PostStatus;
 import com.projects.demo.modules.blog.repository.PostStatusRepository;
 import org.springframework.stereotype.Service;
 

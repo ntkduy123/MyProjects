@@ -15,17 +15,14 @@ export default function asyncComponent(importComponent) {
       }
     }
 
-    componentWillMount() {
-      Nprogress.start()
-    }
-
     async componentDidMount() {
+      Nprogress.start()
       this.mounted = true
-      const { default: Component } = await importComponent()
+      const { default: Element } = await importComponent()
       Nprogress.done()
       if (this.mounted) {
         this.setState({
-          component: <Component {...this.props} />
+          component: <Element {...this.props} />
         })
       }
     }
@@ -35,10 +32,11 @@ export default function asyncComponent(importComponent) {
     }
 
     render() {
-      const Component = this.state.component || <CircularProgress />
+      /* eslint-disable-next-line */
+      const Element = this.state.component || <CircularProgress />
       return (
-        <ReactPlaceholder type="text" rows={7} ready={Component !== null}>
-          {Component}
+        <ReactPlaceholder type="text" rows={7} ready={Element !== null}>
+          {Element}
         </ReactPlaceholder>
       )
     }

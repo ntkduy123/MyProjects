@@ -1,10 +1,12 @@
-import { takeEvery, call, all, fork, put } from 'redux-saga/effects'
+import {
+  takeEvery, call, all, fork, put
+} from 'redux-saga/effects'
 import { GET_TINY_URL } from '../../constants/ActionTypes'
 import { getTinyURLSuccess } from '../actions/TinyURL'
 
 import { callApi } from '../../util/api'
 
-const fetchTinyURLrequest = (payload) => callApi(
+const fetchTinyURLrequest = payload => callApi(
   '/api/tinyURL',
   'POST',
   payload

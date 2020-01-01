@@ -1,10 +1,12 @@
-import { takeEvery, call, all, fork, put } from 'redux-saga/effects'
+import {
+  takeEvery, call, all, fork, put
+} from 'redux-saga/effects'
 import { GET_S3_FILE_LIST, DELETE_S3_FILE } from '../../constants/ActionTypes'
 import { getS3FileListSuccess, deleteS3FileSuccess } from '../actions/AWS'
 
 import { callApi } from '../../util/api'
 
-const fetchS3FileListRequest = (payload) => callApi(
+const fetchS3FileListRequest = payload => callApi(
   '/api/aws/s3',
   'GET',
   payload
@@ -19,7 +21,7 @@ export function* fetchS3FileListWatcher() {
   yield takeEvery(GET_S3_FILE_LIST, fetchS3FileList)
 }
 
-const deleteS3FileListRequest = (payload) => callApi(
+const deleteS3FileListRequest = payload => callApi(
   `/api/aws/s3/${payload.id}`,
   'DELETE',
   payload

@@ -1,4 +1,4 @@
-package com.projects.demo.modules.auth.domain;
+package com.projects.demo.modules.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

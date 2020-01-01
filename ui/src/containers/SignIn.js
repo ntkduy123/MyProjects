@@ -1,8 +1,9 @@
 import React from 'react'
 import {
-  Button, Form, Input, message, Spin
+  Button, Form, Input, Spin
 } from 'antd'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import {
   hideMessage,
@@ -11,32 +12,30 @@ import {
   userSignIn
 } from 'appRedux/actions/Auth'
 
-import { isLogin } from 'util/user'
-
 const FormItem = Form.Item
 
 class SignIn extends React.Component {
+  componentDidUpdate() {
+    const { loggedIn, history } = this.props
+    if (loggedIn) {
+      history.push('/')
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.form.validateFields((err, values) => {
+    const { form, showAuthLoader, userSignIn } = this.props
+    form.validateFields((err, values) => {
       if (!err) {
-        this.props.showAuthLoader()
-        this.props.userSignIn(values)
+        showAuthLoader()
+        userSignIn(values)
       }
     })
   }
 
-  componentDidUpdate() {
-    console.log(this.props.loggedIn)
-    if (this.props.loggedIn) {
-      console.log(this.props.loggedIn)
-      this.props.history.push('/')
-    }
-  }
-
   render() {
-    const { getFieldDecorator } = this.props.form
-    const { loader } = this.props
+    const { loader, form } = this.props
+    const { getFieldDecorator } = form
 
     return (
       <div className="gx-app-login-wrap">
@@ -71,7 +70,7 @@ class SignIn extends React.Component {
                   </FormItem>
                   <FormItem>
                     <Button type="primary" className="gx-mb-0" htmlType="submit">
-                      Sign In
+                      {'Sign In'}
                     </Button>
                   </FormItem>
                 </Form>
@@ -86,9 +85,22 @@ class SignIn extends React.Component {
 
 const WrappedNormalLoginForm = Form.create()(SignIn)
 
-const mapStateToProps = ({auth}) => {
-  const {loader, alertMessage, showMessage, loggedIn} = auth
-  return {loader, alertMessage, showMessage, loggedIn}
+const mapStateToProps = ({ auth }) => {
+  const {
+    loader, alertMessage, showMessage, loggedIn
+  } = auth
+  return {
+    loader, alertMessage, showMessage, loggedIn
+  }
+}
+
+SignIn.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  history: PropTypes.shape().isRequired,
+  form: PropTypes.shape().isRequired,
+  showAuthLoader: PropTypes.func.isRequired,
+  userSignIn: PropTypes.func.isRequired,
+  loader: PropTypes.bool.isRequired
 }
 
 export default connect(mapStateToProps, {

@@ -1,6 +1,6 @@
 package com.projects.demo.modules.blog.specification;
 
-import com.projects.demo.modules.blog.entity.Post;
+import com.projects.demo.modules.domain.Post;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;

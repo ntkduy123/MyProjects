@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from 'antd'
+import PropTypes from 'prop-types'
 
 const Callouts = ({ styleName, callout }) => {
   const { image, title, description } = callout
@@ -21,11 +22,16 @@ const Callouts = ({ styleName, callout }) => {
 
         <h2>{title}</h2>
         <p>{description}</p>
-        <Button type="primary">{'VIEW RANGE'}</Button>
+        <Button type="primary">VIEW RANGE</Button>
 
       </div>
     </div>
   )
+}
+
+Callouts.propTypes = {
+  styleName: PropTypes.string.isRequired,
+  callout: PropTypes.shape().isRequired
 }
 
 export default Callouts
