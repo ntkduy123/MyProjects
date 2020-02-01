@@ -9,7 +9,8 @@ import {
 import {
   showAuthMessage,
   userSignInSuccess,
-  userSignOutSuccess
+  userSignOutSuccess,
+  userSignInError
 } from '../actions/Auth'
 import { callApi } from '../../util/api'
 
@@ -28,7 +29,7 @@ function* signInUserWithEmailPassword({ payload }) {
       yield put(userSignInSuccess(signInUser.token))
     }
   } catch (error) {
-    yield put(showAuthMessage(error))
+    yield put(userSignInError(error.message))
   }
 }
 

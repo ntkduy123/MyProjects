@@ -48,17 +48,22 @@ public class UserController {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap!=null) return errorMap;
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getUsername(),
+                            loginRequest.getPassword()
+                    )
+            );
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = String.format("%s%s", TOKEN_PREFIX, jwtTokenProvider.generateToken(authentication));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = String.format("%s%s", TOKEN_PREFIX, jwtTokenProvider.generateToken(authentication));
 
-        return new ResponseEntity<>(new ResponseMessage(jwt), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseMessage(jwt), HttpStatus.OK);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity<>(new ResponseMessage("Invalid Username or Password"), HttpStatus.UNAUTHORIZED);
+        }
     }
 
     @PostMapping("/register")

@@ -1,14 +1,29 @@
+import { message } from 'antd'
+
 export const callApi = async (url, method, params, type) => {
   const fetchRequest = createFetchRequest(url, method, params, type)
 
-  const request = await fetchRequest
+  const response = await fetchRequest
 
-  if (!request.ok && request.status >= 400) {
-    throw Error(request.statusText)
+  try {
+    const content = await response.json()
+    if (!response.ok && response.status >= 400) {
+      if (response.status === 500) {
+        message.error('Internal Server Error')
+      }
+      message.error(content.message)
+
+      throw Error(content.message)
+    }
+
+    return content
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      message.error('Internal Server Error')
+    } else {
+      throw error
+    }
   }
-
-  const response = await request.json()
-  return response
 }
 
 const createFetchRequest = (url, method, params, type) => {

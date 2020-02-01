@@ -1,11 +1,14 @@
 import React from 'react'
 import { Avatar, Popover } from 'antd'
+import PropTypes from 'prop-types'
 
-const UserInfo = () => {
+const UserInfo = ({ signOut }) => {
   const userMenuOptions = (
     <ul className="gx-user-popover">
       <li>My Account</li>
       <li>Connections</li>
+      {/* eslint-disable-next-line */}
+      <li onClick={signOut}>Logout</li>
     </ul>
   )
   return (
@@ -22,6 +25,10 @@ const UserInfo = () => {
       />
     </Popover>
   )
+}
+
+UserInfo.propTypes = {
+  signOut: PropTypes.func.isRequired
 }
 
 export default UserInfo

@@ -47,7 +47,7 @@ class UploadPicture extends Component {
 
   handleDownload = (file) => {
     const { addImage } = this.props
-    addImage(file)
+    file.response ? addImage(file.response) : addImage(file)
   }
 
   render() {

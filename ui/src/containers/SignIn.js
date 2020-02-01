@@ -1,9 +1,10 @@
 import React from 'react'
 import {
-  Button, Form, Input, Spin
+  Button, Form, Input, Spin, Icon
 } from 'antd'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import {
   hideMessage,
@@ -72,7 +73,38 @@ class SignIn extends React.Component {
                     <Button type="primary" className="gx-mb-0" htmlType="submit">
                       {'Sign In'}
                     </Button>
+                    <span>
+                      {'or'}
+                    </span>
+                    <Link to="/signup">
+                      {' Sign Up'}
+                    </Link>
                   </FormItem>
+                  <div className="gx-flex-row gx-justify-content-between">
+                    <span>or connect with</span>
+                    <ul className="gx-social-link">
+                      <li>
+                        <Icon
+                          type="google"
+                        />
+                      </li>
+                      <li>
+                        <Icon
+                          type="facebook"
+                        />
+                      </li>
+                      <li>
+                        <Icon
+                          type="github"
+                        />
+                      </li>
+                      <li>
+                        <Icon
+                          type="twitter"
+                        />
+                      </li>
+                    </ul>
+                  </div>
                 </Form>
               </div>
             </div>

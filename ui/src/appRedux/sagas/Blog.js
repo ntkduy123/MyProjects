@@ -35,7 +35,7 @@ const fetchPostRequest = id => callApi(
 )
 
 function* fetchPost({ payload }) {
-  const fetchedPost = yield call(fetchPostRequest, payload)
+  const fetchedPost = payload ? yield call(fetchPostRequest, payload) : {}
   yield put(getPostSuccess(fetchedPost))
 }
 

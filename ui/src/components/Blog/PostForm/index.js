@@ -25,9 +25,7 @@ class PostForm extends Component {
   componentDidMount = () => {
     const { getPost, getPostCategoryList, match } = this.props
     const { params } = match
-    if (params.id) {
-      getPost(params.id)
-    }
+    getPost(params.id)
     getPostCategoryList()
   }
 
@@ -36,13 +34,15 @@ class PostForm extends Component {
     const {
       showMessage,
       hideMessage,
-      history
+      history,
+      match
     } = this.props
 
-    if (selectedPost.content) {
+    if (selectedPost.content && match.params.id) {
       const { content } = selectedPost
       const contentObj = JSON.parse(content)
       this.setState({
+        featuredImage: selectedPost.image,
         content: EditorState.createWithContent(
           convertFromRaw(contentObj)
         )

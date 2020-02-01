@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPost } from 'appRedux/actions/Blog'
 import Post from 'components/Blog/Post'

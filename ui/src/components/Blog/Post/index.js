@@ -22,9 +22,9 @@ class Post extends Component {
       <div className="gx-main-content gx-pb-sm-4">
         <Row>
           <Col span={24}>
-            <Card title={selectedPost.title}>
+            <Card title={selectedPost.title} headStyle={{ fontSize: '40px' }}>
               <Spin spinning={false} size="large">
-                <div dangerouslySetInnerHTML={{ __html: content }} />
+                <div className="post" dangerouslySetInnerHTML={{ __html: content }} />
               </Spin>
             </Card>
           </Col>

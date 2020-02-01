@@ -6,24 +6,19 @@ import { footerText } from 'util/config'
 import App from 'routes/index'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Topbar from '../Topbar/index'
-import { Sidebar } from '../Sidebar/index'
-import { TAB_SIZE } from '../../constants/ThemeSetting'
+import InsideHeader from 'containers/Topbar/InsideHeader'
 
 const { Content, Footer } = Layout
 
 export class MainApp extends Component {
-  getContainerClass = () => '';
+  getContainerClass = () => 'gx-container-wrap';
 
   getNavStyles = () => {
-    const { width } = this.props
-    if (width < TAB_SIZE) {
-      return <Topbar />
-    }
-    return null
-  };
+    const { history } = this.props
+    return <InsideHeader history={history} />
+  }
 
-  getSidebar = () => <Sidebar />;
+  getSidebar = () => null
 
   render() {
     const { match } = this.props
@@ -33,7 +28,7 @@ export class MainApp extends Component {
         {this.getSidebar()}
         <Layout>
           {this.getNavStyles()}
-          <Content style={{ overflowX: 'hidden' }} className={`gx-layout-content ${this.getContainerClass()} `}>
+          <Content className={`gx-layout-content ${this.getContainerClass()} `}>
             <App match={match} />
             <Footer>
               <div className="gx-layout-footer-content">
@@ -54,8 +49,8 @@ const mapStateToProps = ({ settings }) => {
 }
 
 MainApp.propTypes = {
-  width: PropTypes.number.isRequired,
-  match: PropTypes.shape().isRequired
+  match: PropTypes.shape().isRequired,
+  history: PropTypes.shape().isRequired
 }
 
 export default connect(mapStateToProps)(MainApp)

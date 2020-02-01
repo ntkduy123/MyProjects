@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Table } from 'antd'
+import { Card, Table, Button } from 'antd'
 import PropTypes from 'prop-types'
 
 const columns = [
@@ -40,7 +40,7 @@ const columns = [
     key: 'action',
     dataIndex: 'id',
     render: id => (
-      <Link to={`/blog/post-form/${id}`}>Edit</Link>
+      <Link to={`/admin/post-form/${id}`}>Edit</Link>
     ),
   }
 ]
@@ -56,6 +56,9 @@ class PostTable extends Component {
     return (
       <Card title="Post Table">
         <Table className="gx-table-responsive" columns={columns} dataSource={postList} />
+        <Button type="primary" style={{ marginBottom: 16 }}>
+          <Link to="/admin/post-form">Write new post</Link>
+        </Button>
       </Card>
     )
   }

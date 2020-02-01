@@ -14,7 +14,7 @@ class PostList extends Component {
 
   render() {
     const {
-      loading, postList, postCategoryList, getPostList
+      loading, postList = [], postCategoryList = [], getPostList
     } = this.props
 
     return (

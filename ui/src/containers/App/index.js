@@ -10,22 +10,7 @@ import PropTypes from 'prop-types'
 import { isLogin } from 'util/user'
 import { MainApp } from './MainApp'
 import SignIn from '../SignIn'
-
-const RestrictedRoute = ({ component: Element, ...rest }) => (
-  <Route
-    {...rest}
-    render={props => (isLogin()
-      ? <Element {...props} />
-      : (
-        <Redirect
-          to={{
-            pathname: '/signin',
-            state: { from: props.location }
-          }}
-        />
-      ))}
-  />
-)
+import SignUp from '../SignUp'
 
 class App extends Component {
   componentDidMount() {
@@ -40,9 +25,9 @@ class App extends Component {
   }
 
   setLayoutType = () => {
-    document.body.classList.remove('boxed-layout')
+    document.body.classList.remove('full-layout')
     document.body.classList.remove('framed-layout')
-    document.body.classList.add('full-layout')
+    document.body.classList.add('boxed-layout')
   };
 
   setNavStyle = () => {
@@ -56,11 +41,7 @@ class App extends Component {
     } = this.props
 
     if (location.pathname === '/') {
-      if (!isLogin()) {
-        return ( <Redirect to="/signin" /> )
-      } else {
-        return ( <Redirect to="/blog/post-list" /> )
-      }
+      return ( <Redirect to="/blog/post-list" />)
     }
 
     if (location.pathname === '/signin') {
@@ -75,7 +56,8 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/signin" component={SignIn} />
-        <RestrictedRoute path={`${match.url}`} component={MainApp} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route path={`${match.url}`} component={MainApp} />
       </Switch>
     )
   }
@@ -86,11 +68,6 @@ const mapStateToProps = ({ auth }) => {
   return {
     authUser, initURL
   }
-}
-
-RestrictedRoute.propTypes = {
-  component: PropTypes.shape().isRequired,
-  location: PropTypes.shape().isRequired,
 }
 
 App.propTypes = {

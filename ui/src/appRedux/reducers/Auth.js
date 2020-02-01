@@ -4,13 +4,14 @@ import {
   ON_HIDE_LOADER,
   ON_SHOW_LOADER,
   SHOW_MESSAGE,
+  SIGNIN_USER,
   SIGNIN_USER_SUCCESS,
   SIGNOUT_USER_SUCCESS
 } from 'constants/ActionTypes'
+import { SIGNIN_USER_ERROR, SIGNOUT_USER } from '../../constants/ActionTypes'
 
 const INIT_STATE = {
   loader: false,
-  alertMessage: '',
   showMessage: false,
   loggedIn: false
 }
@@ -25,11 +26,34 @@ export default (state = INIT_STATE, action) => {
       }
     }
 
+    case SIGNIN_USER: {
+      return {
+        ...state,
+        loader: true,
+        alertMessage: ''
+      }
+    }
+
     case SIGNIN_USER_SUCCESS: {
       return {
         ...state,
         loader: false,
         loggedIn: true
+      }
+    }
+
+    case SIGNIN_USER_ERROR: {
+      return {
+        ...state,
+        loader: false
+      }
+    }
+
+    case SIGNOUT_USER: {
+      return {
+        ...state,
+        loader: true,
+        alertMessage: ''
       }
     }
 

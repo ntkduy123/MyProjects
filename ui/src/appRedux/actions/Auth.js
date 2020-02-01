@@ -8,6 +8,7 @@ import {
   SIGNIN_GOOGLE_USER_SUCCESS,
   SIGNIN_USER,
   SIGNIN_USER_SUCCESS,
+  SIGNIN_USER_ERROR,
   SIGNOUT_USER,
   SIGNOUT_USER_SUCCESS,
   RESET_PASSWORD,
@@ -26,6 +27,11 @@ export const userSignOut = () => ({
 export const userSignInSuccess = authUser => ({
   type: SIGNIN_USER_SUCCESS,
   payload: authUser
+})
+
+export const userSignInError = message => ({
+  type: SIGNIN_USER_ERROR,
+  payload: message
 })
 
 export const userSignOutSuccess = () => ({
