@@ -12,7 +12,10 @@ import {
   SIGNOUT_USER,
   SIGNOUT_USER_SUCCESS,
   RESET_PASSWORD,
-  RESET_PASSWORD_SUCCESS
+  RESET_PASSWORD_SUCCESS,
+  SIGNUP_USER,
+  SIGNUP_USER_SUCCESS,
+  SIGNUP_USER_ERROR
 } from 'constants/ActionTypes'
 
 export const userSignIn = user => ({
@@ -36,6 +39,20 @@ export const userSignInError = message => ({
 
 export const userSignOutSuccess = () => ({
   type: SIGNOUT_USER_SUCCESS,
+})
+
+export const userSignUp = user => ({
+  type: SIGNUP_USER,
+  payload: user
+})
+
+export const userSignUpSuccess = () => ({
+  type: SIGNUP_USER_SUCCESS,
+})
+
+export const userSignUpError = message => ({
+  type: SIGNUP_USER_ERROR,
+  payload: message
 })
 
 export const showAuthMessage = message => ({

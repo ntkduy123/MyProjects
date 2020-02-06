@@ -6,7 +6,10 @@ import {
   SHOW_MESSAGE,
   SIGNIN_USER,
   SIGNIN_USER_SUCCESS,
-  SIGNOUT_USER_SUCCESS
+  SIGNOUT_USER_SUCCESS,
+  SIGNUP_USER,
+  SIGNUP_USER_SUCCESS,
+  SIGNUP_USER_ERROR
 } from 'constants/ActionTypes'
 import { SIGNIN_USER_ERROR, SIGNOUT_USER } from '../../constants/ActionTypes'
 
@@ -61,6 +64,27 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         loggedIn: false,
+        loader: false
+      }
+    }
+
+    case SIGNUP_USER: {
+      return {
+        ...state,
+        loader: true
+      }
+    }
+
+    case SIGNUP_USER_SUCCESS: {
+      return {
+        ...state,
+        loader: false
+      }
+    }
+
+    case SIGNUP_USER_ERROR: {
+      return {
+        ...state,
         loader: false
       }
     }

@@ -4,13 +4,16 @@ import {
 } from 'redux-saga/effects'
 import {
   SIGNIN_USER,
-  SIGNOUT_USER
+  SIGNOUT_USER,
+  SIGNUP_USER
 } from 'constants/ActionTypes'
 import {
   showAuthMessage,
   userSignInSuccess,
   userSignOutSuccess,
-  userSignInError
+  userSignInError,
+  userSignUpError,
+  userSignUpSuccess
 } from '../actions/Auth'
 import { callApi } from '../../util/api'
 
@@ -20,6 +23,11 @@ const signInUserWithEmailPasswordRequest = payload => callApi(
   payload
 )
 
+const signUpRequest = payload => callApi(
+  '/api/users/register',
+  'POST',
+  payload
+)
 
 function* signInUserWithEmailPassword({ payload }) {
   try {
@@ -42,6 +50,16 @@ function* signOut() {
   }
 }
 
+function* signUp() {
+  try {
+    const response = yield call(signUpRequest, payload)
+    console.log(response)
+    yield put(userSignUpSuccess(signOutUser))
+  } catch (error) {
+    yield put(userSignUpError(error))
+  }
+}
+
 export function* signInUser() {
   yield takeEvery(SIGNIN_USER, signInUserWithEmailPassword)
 }
@@ -50,9 +68,14 @@ export function* signOutUser() {
   yield takeEvery(SIGNOUT_USER, signOut)
 }
 
+export function* signUpUser() {
+  yield takeEvery(SIGNUP_USER, signUp)
+}
+
 export default function* rootSaga() {
   yield all([
     fork(signInUser),
-    fork(signOutUser)
+    fork(signOutUser),
+    fork(signUpUser)
   ])
 }
