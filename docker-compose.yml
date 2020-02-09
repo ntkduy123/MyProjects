@@ -45,9 +45,11 @@ services:
     working_dir: /app
     volumes:
       - ~/.m2:/root/.m2
+    ports:
+      - '8080:8080'
     expose:
       - '8080'
-    command: mvn clean spring-boot:run -Drun.profiles=prod
+    command: mvn clean spring-boot:run -Dspring-boot.run.profiles=prod
     depends_on:
       - nginx
       - mysql
