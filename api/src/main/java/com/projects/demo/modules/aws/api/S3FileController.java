@@ -29,6 +29,7 @@ public class S3FileController {
             S3File uploadedFile = s3FileService.saveOrUpdate(s3File);
             return new ResponseEntity<>(uploadedFile, HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(new ResponseMessage("Error uploading images"), HttpStatus.BAD_REQUEST);
         }
     }
