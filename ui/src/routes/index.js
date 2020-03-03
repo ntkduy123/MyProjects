@@ -25,6 +25,7 @@ const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
       <Route path={`${match.url}blog`} component={asyncComponent(() => import('./Blog'))} />
+      <Route path={`${match.url}todo`} component={asyncComponent(() => import('./Todo'))} />
       <Route path={`${match.url}tiny-url`} component={asyncComponent(() => import('./TinyURL'))} />
       <RestrictedRoute path={`${match.url}admin`} component={asyncComponent(() => import('./Admin'))} />
     </Switch>
