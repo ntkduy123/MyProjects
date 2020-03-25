@@ -5,18 +5,15 @@ import PropTypes from 'prop-types'
 import ToDoItem from './ToDoItem'
 
 const ToDoList = (({
-  toDos, onTodoSelect, onTodoChecked, onMarkAsStart
+  taskList
 }) => (
   <div className="gx-module-list">
     <CustomScrollbars className="gx-module-content-scroll">
-      {toDos.map((todo, index) => (
+      {taskList.map((task, index) => (
         <ToDoItem
-          key={todo.title}
+          key={task.title}
           index={index}
-          todo={todo}
-          onTodoSelect={onTodoSelect}
-          onMarkAsStart={onMarkAsStart}
-          onTodoChecked={onTodoChecked}
+          todo={task}
         />
       ))}
     </CustomScrollbars>
@@ -24,10 +21,7 @@ const ToDoList = (({
 ))
 
 ToDoList.propTypes = {
-  onTodoSelect: PropTypes.func.isRequired,
-  onTodoChecked: PropTypes.func.isRequired,
-  onMarkAsStart: PropTypes.func.isRequired,
-  toDos: PropTypes.shape().isRequired
+  taskList: PropTypes.shape().isRequired
 }
 
 export default ToDoList

@@ -1,5 +1,6 @@
 package com.projects.demo.modules.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -36,11 +37,7 @@ public class Task {
     private TaskStatus taskStatus;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "task_task_labels",
-            joinColumns = @JoinColumn(name = "task_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_label_id")
-    )
+    @JoinTable
     private Set<TaskLabel> taskLabels = new HashSet<>();
 
     @NotNull(message = "Assignee is required")

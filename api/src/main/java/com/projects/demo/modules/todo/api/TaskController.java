@@ -1,5 +1,6 @@
 package com.projects.demo.modules.todo.api;
 
+import com.projects.demo.modules.blog.dto.ResponseMessage;
 import com.projects.demo.modules.blog.service.MapValidationErrorService;
 import com.projects.demo.modules.domain.Task;
 import com.projects.demo.modules.domain.TaskLabel;
@@ -65,5 +66,25 @@ public class TaskController {
     @GetMapping("")
     public Iterable<Task> getTasks() {
         return taskService.findAll();
+    }
+
+    @PostMapping(value = "/label")
+    public ResponseEntity<?> saveTaskLabel(@Valid @RequestBody TaskLabel taskLabel, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if(errorMap!=null) return errorMap;
+
+        TaskLabel newTaskLabel = taskLabelService.save(taskLabel);
+        return new ResponseEntity<>(newTaskLabel, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/label/{id}")
+    public ResponseEntity<?> deleteTaskLabel(@PathVariable("id") Long id) {
+        try {
+            taskLabelService.delete(id);
+            return new ResponseEntity<>(new ResponseMessage("Successfully deleted task label"), HttpStatus.OK);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity<>(new ResponseMessage(ex.getMessage()), HttpStatus.UNAUTHORIZED);
+        }
     }
 }

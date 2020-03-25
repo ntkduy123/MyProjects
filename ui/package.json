@@ -1,5 +1,5 @@
 {
-  "name": "Portfolio",
+  "name": "MyProjects",
   "version": "1.5.0",
   "private": true,
   "dependencies": {
@@ -71,5 +71,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:8080"
+  "proxy": "http://35.162.216.149"
 }

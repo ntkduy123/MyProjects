@@ -6,7 +6,8 @@ import PropTypes from 'prop-types'
 
 const Blog = ({ match }) => (
   <Switch>
-    <Route path={`${match.url}`} component={asyncComponent(() => import('components/Todo'))} />
+    <Route path={`${match.url}/new-task`} component={asyncComponent(() => import('containers/Todo/AddTodo'))} />
+    <Route path={`${match.url}`} component={asyncComponent(() => import('containers/Todo'))} />
   </Switch>
 )
 

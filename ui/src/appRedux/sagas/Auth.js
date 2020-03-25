@@ -53,7 +53,6 @@ function* signOut() {
 function* signUp() {
   try {
     const response = yield call(signUpRequest, payload)
-    console.log(response)
     yield put(userSignUpSuccess(signOutUser))
   } catch (error) {
     yield put(userSignUpError(error))

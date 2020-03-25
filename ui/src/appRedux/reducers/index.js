@@ -6,6 +6,7 @@ import Common from './Common'
 import AWS from './AWS'
 import Auth from './Auth'
 import TinyURL from './TinyURL'
+import Todo from './Todo'
 
 const reducers = combineReducers({
   routing: routerReducer,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
   common: Common,
   aws: AWS,
   auth: Auth,
-  tinyURL: TinyURL
+  tinyURL: TinyURL,
+  todo: Todo
 })
 
 export default reducers

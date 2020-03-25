@@ -48,10 +48,12 @@ public class TaskService {
         Set<TaskLabel> taskLabels = new HashSet<>();
         for (TaskLabel taskLabel : task.getTaskLabels()) {
             Long taskLabelId = taskLabel.getId();
+            System.out.println(taskLabelId);
             taskLabels.add(taskLabelRepository
                     .findById(taskLabelId)
                     .orElseThrow(() -> new ResourceNotFoundException(String.format("Task Labels ID %s does not exist", taskLabelId))));
         }
+        System.out.println(taskLabels.size());
         task.setTaskLabels(taskLabels);
 
         Long assigneeId = task.getAssignee().getId();

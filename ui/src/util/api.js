@@ -13,7 +13,7 @@ export const callApi = async (url, method, params, type) => {
       }
       message.error(content.message)
 
-      throw Error(content.message)
+      throw Error(content.message) 
     }
 
     return content

@@ -1,5 +1,7 @@
 package com.projects.demo.modules.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,6 +18,7 @@ public class TaskLabel {
     private String description;
 
     @ManyToMany(mappedBy = "taskLabels")
+    @JsonIgnore
     private Set<Task> tasks = new HashSet<>();
 
     private String color;
