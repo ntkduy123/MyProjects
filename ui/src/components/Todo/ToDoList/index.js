@@ -11,9 +11,9 @@ const ToDoList = (({
     <CustomScrollbars className="gx-module-content-scroll">
       {taskList.map((task, index) => (
         <ToDoItem
-          key={task.title}
+          key={task.id}
           index={index}
-          todo={task}
+          task={task}
         />
       ))}
     </CustomScrollbars>

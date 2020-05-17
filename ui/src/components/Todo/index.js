@@ -20,6 +20,13 @@ import options from './data/options'
 const ITEM_HEIGHT = 34
 
 class ToDo extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      drawerState: false
+    }
+  }
+
   componentDidMount() {
     this.manageHeight()
     const {
@@ -35,6 +42,13 @@ class ToDo extends Component {
     this.manageHeight()
   }
 
+  onToggleDrawer = () => {
+    const { drawerState } = this.state
+    this.setState({
+      drawerState: !drawerState
+    })
+  }
+
   getNavFilters = () => {
     const { taskStatusList } = this.props
     return taskStatusList.map(taskStatus => (
@@ -47,7 +61,7 @@ class ToDo extends Component {
         }
       }
       >
-        <span className="gx-link active">
+        <span className="gx-link">
           <i className={`icon icon-${taskStatus.icon}`} />
           <span>{taskStatus.name}</span>
         </span>
@@ -169,9 +183,21 @@ class ToDo extends Component {
   }
 
   render() {
+    const { drawerState } = this.state
+
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
+          <div className="gx-d-block gx-d-lg-none">
+            <Drawer
+              placement="left"
+              closable={false}
+              visible={drawerState}
+              onClose={this.onToggleDrawer}
+            >
+              {this.ToDoSideBar()}
+            </Drawer>
+          </div>
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
             {this.ToDoSideBar()}
           </div>
@@ -183,6 +209,7 @@ class ToDo extends Component {
                 <i
                   className="icon icon-menu gx-icon-btn"
                   aria-label="Menu"
+                  onClick={this.onToggleDrawer}
                 />
               </span>
               {/* <AppModuleHeader
@@ -207,9 +234,9 @@ ToDo.propTypes = {
   getAllTaskLabel: PropTypes.func.isRequired,
   getAllTaskType: PropTypes.func.isRequired,
   getAllTaskStatus: PropTypes.func.isRequired,
-  taskStatusList: PropTypes.arrayOf().isRequired,
-  taskList: PropTypes.arrayOf().isRequired,
-  taskLabelList: PropTypes.arrayOf().isRequired
+  taskStatusList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  taskList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  taskLabelList: PropTypes.arrayOf(PropTypes.shape()).isRequired
 }
 
 export default ToDo

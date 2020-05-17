@@ -37,7 +37,7 @@ class AddTodo extends Component {
           taskStatus: {
             id: 1
           },
-          taskLabel: values.labels.map(label => ({
+          taskLabels: values.labels.map(label => ({
             id: label
           })),
           dueDate: values.dueDate.unix()
